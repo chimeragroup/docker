@@ -1,0 +1,18 @@
+language: bash
+services: docker
+
+env:
+  - IMAGE=docker:17.06-dind-tls
+  - IMAGE=docker:17.09-dind-tls
+  - IMAGE=docker:17.10-dind-tls
+
+before_script:
+  - env | sort
+  - cd $(echo $IMAGE | sed 's/:/\//g')
+
+script:
+  - travis_retry docker build -t "chimeragroup/$IMAGE" .
+  - ./test/run.sh "chimeragroup/$IMAGE"
+
+after_script:
+  - docker images
