@@ -31,7 +31,7 @@ cid="$(
 		"$image"
 )"
 
-. "$dir/../../test/retry.sh" 'docker exec $cname docker version'
+. "$dir/../../../test/retry.sh" 'docker exec $cname docker version'
 
 cname2="docker-daemon-container-$RANDOM-$RANDOM"
 cid2="$(
